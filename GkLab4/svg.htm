@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" 
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="750px" height="570px" 
+     viewBox="0 0 7.5 5.7"
+     preserveAspectRatio="xMidYMid">
+<!--
+<rect x="0" y="0" width="7.5" height="5.7" 
+                            stroke="blue" fill="none" stroke-width="0.05"/>
+-->
+<defs>
+<g id = "jedenastokat" >
+<polygon points="0.275319,0.176937 0,0 0.275319,0.176937 0.135954,0.297698 0,0 0.135954,0.297698 -0.0465758,0.323942 0,0 -0.0465758,0.323942 
+-0.214318,0.247336 0,0 -0.214318,0.247336 -0.314016,0.0922034 0,0 -0.314016,0.0922034 -0.314016,-0.0922034 0,0 -0.314016,-0.0922034 
+-0.214318,-0.247336 0,0 -0.214318,-0.247336 -0.0465758,-0.323942 0,0 -0.0465758,-0.323942 0.135954,-0.297698 0,0 0.135954,-0.297698 
+0.275319,-0.176937 0,0 0.275319,-0.176937 0.327273,-0.0370835 0,0 0.327273,-0.0370835" "
+                      fill="none" stroke="black" stroke-width="0.008">
+<animateTransform attributeName = "transform" type = "rotate"
+from = "0" to = "360"
+dur = "5s" repeatCount="indefinite" />
+</polygon>
+</g>
+</defs>
+<defs>
+<g id = "contraption" >							
+<use xlink:href = "#jedenastokat" transform = "translate (0.6,0.5) scale(1.25, 1.25)" />
+<use xlink:href = "#jedenastokat" transform = "translate (2.5,1) scale(1.25, 1.25)" />
+<line transform = x1="0.55" x1="0.55" y1="0.5" x2="2.55" y2="1" stroke-width="0.15" stroke="red" />
+<polygon points="1.55,0.75 1.35,2 1.75,2" stroke-width="0.01"/>
+</g>
+</defs>
+
+<use xlink:href = "#contraption" transform = "translate (2,2) scale(1.2, 1.2)"  fill="blue" stroke="blue"  />
+<use xlink:href = "#contraption" transform = "translate (0,0.5)"  fill="purple" stroke="purple"  />
+<use xlink:href = "#contraption" transform = "translate (4,0.5) scale(0.8, 0.8)"  fill="green" stroke="green"  />
+
+</svg>
