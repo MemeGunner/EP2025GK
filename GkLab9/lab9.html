@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/three@0.115/build/three.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.115/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+<script>
+let canvas = document.getElementById("glcanvas");
+
+const scene = new THREE.Scene({color: 0xfff});
+
+const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 1, 1000);
+
+const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+document.body.appendChild(renderer.domElement);
+
+const light1 = new THREE.PointLight( 0xffffff, 1, 300 );
+light1.position.set(-5, -0.5, 0.5);
+camera.add(light1);
+const light2 = new THREE.PointLight( 0xffffff, 1, 300 );
+light2.position.set(5, 4.5, -0.5);
+camera.add(light2);
+scene.add(camera);
+
+const material = new THREE.MeshPhongMaterial(
+    {
+        color: 0xffffff, 
+    });
+
+let pawn = new THREE.Group();
+
+const pawnShape_1 = new THREE.CylinderGeometry(0.7,0.7, 0.2, 100);
+const pawn_1 = new THREE.Mesh(pawnShape_1, material);
+pawn_1.position.y=0.5;
+pawn.add(pawn_1);
+
+const pawnShape_2 = new THREE.CylinderGeometry(0.45, 0.7, 0.5, 100);
+const pawn_2 = new THREE.Mesh(pawnShape_2, material);
+pawn_2.position.y=0.75; 	
+pawn.add(pawn_2);
+
+const pawnShape_3 = new THREE.CylinderGeometry(0.3, 0.45, 0.5, 100);
+const pawn_3 = new THREE.Mesh(pawnShape_3, material);
+pawn_3.position.y=1.25; 	
+pawn.add(pawn_3);
+
+const pawnShape_4 = new THREE.CylinderGeometry(0.3, 0.3, 1.7, 100);
+const pawn_4 = new THREE.Mesh(pawnShape_4, material);
+pawn_4.position.y=1.75; 	
+pawn.add(pawn_4);
+
+const pawnShape_5 = new THREE.CylinderGeometry(0.5, 0.5, 0.2, 100);
+const pawn_5 = new THREE.Mesh(pawnShape_5, material);
+pawn_5.position.y=2.25; 	
+pawn.add(pawn_5);
+
+const pawnShape_6 = new THREE.SphereGeometry(0.5, 100, 100);
+const pawn_6 = new THREE.Mesh(pawnShape_6, material);
+pawn_6.position.y=2.75; 	
+pawn.add(pawn_6);
+
+
+pawn.position.set(0,-3,1);
+scene.add(pawn);
+renderer.render(scene, camera);
+
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+
+camera.position.z = 4.5;
+
+animate();
+
+</script>
+</body>
+</html>
