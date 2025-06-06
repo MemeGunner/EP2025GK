@@ -1,0 +1,343 @@
+﻿<Window x:Class="P4_Projekt_WPF_EP2B.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P4_Projekt_WPF_EP2B.Views"
+        xmlns:vm="clr-namespace:P4_Projekt_WPF_EP2B.ViewModels"
+        xmlns:view="clr-namespace:P4_Projekt_WPF_EP2B.Views"
+        mc:Ignorable="d"
+        Title="Smash Esport Manager" Height="600" Width="1000" WindowState="Maximized">
+    <Window.DataContext>
+        <vm:TourneyViewModel></vm:TourneyViewModel>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style x:Key="h1" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+        </Style>
+        <Style x:Key="h2" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style x:Key="h3" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="LightGray" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style x:Key="Borduh" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Width" Value="Auto" />
+        </Style>
+        <Style x:Key="h4" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+        </Style>
+        <!-- Style, pozwalają na zapisanie wyglądu, rozmiaru elementu, a następnie użycie go na wielu elementach -->
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Rectangle
+            Grid.ColumnSpan="5"
+            Grid.RowSpan="3"
+            Fill="Black" />
+        <Rectangle
+            Grid.Row="1"
+            Grid.ColumnSpan="5"
+            Fill="#454443" />
+        <Rectangle
+            Grid.Column="2"
+            Grid.RowSpan="3"
+            Fill="#454443" />
+        <Grid Grid.Column="0" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListBox Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="6" SelectedIndex="{Binding TSelectedIndex}" 
+                     ItemsSource="{Binding Tourneys}" Background="Black">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Borduh}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding tName}" Style="{StaticResource h2}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding tStartDate}" Style="{StaticResource h3}"/>
+                                        <TextBlock Text="-" Style="{StaticResource h3}"/>
+                                        <TextBlock Text="{Binding tEndDate}" Style="{StaticResource h3}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+        </Grid>
+        <Grid Grid.Column="4" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6"  SelectedIndex="{Binding PSelectedIndex}" 
+                     ItemsSource="{Binding Players}" Background="Black">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Borduh}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding pName}" Style="{StaticResource h2}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding pPronouns}" Style="{StaticResource h3}"/>
+                                        <TextBlock Text=", " Style="{StaticResource h3}"/>
+                                        <TextBlock Text="{Binding pMainName}" Style="{StaticResource h3}"/>
+                                        <TextBlock Text=", " Style="{StaticResource h3}"/>
+                                        <TextBlock Text="{Binding pDifficulty}" Style="{StaticResource h3}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource h4}">*Nazwa Turnieju</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding CurTName}"></TextBox>
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource h4}">*Na której stronie (np. start.gg)</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurTWhichSite}"></TextBox>
+            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource h4}">Link do strony</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding CurTSiteLink}"></TextBox>
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource h4}">*Data rozpoczęcia turnieju</TextBlock>
+            <TextBox Grid.Row="3" Grid.Column="0" Text="{Binding CurTStartDate}"></TextBox>
+            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource h4}">*Data końca turnieju</TextBlock>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurTEndDate}"></TextBox>
+            <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource h4}">*Czy turniej jest online?</TextBlock>
+            <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding CurTIsOnline}"></TextBox>
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource h4}">Adres ulicy lokacji turnieju</TextBlock>
+            <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding CurTAdress}"></TextBox>
+            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource h4}">Miasto lokacji turnieju</TextBlock>
+            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding CurTCity}"></TextBox>
+            <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource h4}">Kod pocztowy lokacji turnieju</TextBlock>
+            <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding CurTZipCode}"></TextBox>
+            <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource h4}">Kraj lokacji turnieju</TextBlock>
+            <TextBox Grid.Row="7" Grid.Column="0" Text="{Binding CurTCountry}"></TextBox>
+            <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource h4}">Notatki</TextBlock>
+            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding CurTNotes}"></TextBox>
+            <Grid Grid.Row="6" Grid.RowSpan="6" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Content="Add" Command="{Binding TCreateCommand}"></Button>
+                <Button Grid.Row="1" Content="Update" Command="{Binding TUpdateCommand}"></Button>
+                <Button Grid.Row="2" Content="Delete" Command="{Binding TDeleteCommand}"></Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="3" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource h4}">*Nazwa Gracza</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding CurPName}"></TextBox>
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource h4}">Prefix Gracza</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurPPrefix}"></TextBox>
+            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource h4}">Zaimek Gracza</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding CurPPronouns}"></TextBox>
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource h4}">Nazwa Maina Gracza</TextBlock>
+            <TextBox Grid.Row="3" Grid.Column="0" Text="{Binding CurPMainName}"></TextBox>
+            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource h4}">Poziom Trudności Gracza</TextBlock>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurPDifficulty}"></TextBox>
+            <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource h4}">Kraj Gracza</TextBlock>
+            <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding CurPCountry}"></TextBox>
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource h4}">Data dołączenia Gracza</TextBlock>
+            <TextBox Grid.Row="5" Grid.Column="0" Text="{Binding CurPJoinDate}"></TextBox>
+            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource h4}">Link do profilu Gracza</TextBlock>
+            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding CurPLink}"></TextBox>
+            <TextBlock Grid.Row="4" Grid.Column="2" Style="{StaticResource h4}">*Czy Gracz nie ma konta?</TextBlock>
+            <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding CurPIsAccountless}"></TextBox>
+            <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource h4}">Notatki</TextBlock>
+            <TextBox Grid.Row="7" Grid.Column="0" Text="{Binding CurPNotes}"></TextBox>
+            <Grid Grid.Row="6" Grid.RowSpan="6" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Content="Add" Command="{Binding PCreateCommand}"></Button>
+                <Button Grid.Row="1" Content="Update" Command="{Binding PUpdateCommand}"></Button>
+                <Button Grid.Row="2" Content="Delete" Command="{Binding PDeleteCommand}"></Button>
+            </Grid>
+        </Grid>
+        <ScrollViewer Grid.Column="0" Grid.Row="0">
+            <StackPanel>
+                <TextBlock Style="{StaticResource h1}" FontWeight="ExtraBold">Nazwa Turnieju</TextBlock>
+                <TextBlock Foreground="White" FontSize="16" Text="{Binding CurTName}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Id</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurTId}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Na której stronie</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurTWhichSite}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Link do strony</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurTSiteLink}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Data rozpoczęcia turnieju</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurTStartDate}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Data końca turnieju</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurTEndDate}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Czy turniej jest online?</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurTIsOnline}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Adres</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurTAdress}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Miasto</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurTCity}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Kod pocztowy</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurTZipCode}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Kraj</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurTCountry}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Notatki</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurTNotes}"></TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="4" Grid.Row="0">
+            <StackPanel>
+                <TextBlock Style="{StaticResource h1}" FontWeight="ExtraBold">Nazwa Gracza</TextBlock>
+                <TextBlock Foreground="White" FontSize="16" Text="{Binding CurPName}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Id</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurPId}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Prefix</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurPPrefix}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Zaimek/ki</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurPPronouns}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Main</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurPMainName}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Poziom Trudności</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurPDifficulty}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Kraj</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurPCountry}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Data dołączenia</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurPJoinDate}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Link do profilu</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurPLink}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Czy jest bez konta?</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurPIsAccountless}"></TextBlock>
+                <TextBlock Style="{StaticResource h1}">Notatki</TextBlock>
+                <TextBlock Foreground="White" Text="{Binding CurPNotes}"></TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+        <ListBox Grid.Row="0" Grid.Column="1" SelectedIndex="{Binding PitSelectedIndex_ForT}" 
+                 ItemsSource="{Binding PlayersInTourneys_ForT}" Background="Black">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource Borduh}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <StackPanel>
+                                <TextBlock Text="{Binding player.pName}" Style="{StaticResource h2}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Gra w turnieju: " Style="{StaticResource h3}"/>
+                                    <TextBlock Text="{Binding pitIsPlaying}" Style="{StaticResource h3}"/>
+                                    <TextBlock Text=", Jest Organizatorem: " Style="{StaticResource h3}"/>
+                                    <TextBlock Text="{Binding pitIsTO}" Style="{StaticResource h3}"/>
+                                    <TextBlock Text=", Seed: " Style="{StaticResource h3}"/>
+                                    <TextBlock Text="{Binding pitSeeding}" Style="{StaticResource h3}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox Grid.Row="0" Grid.Column="3" SelectedIndex="{Binding PitSelectedIndex_ForP}" 
+                 ItemsSource="{Binding PlayersInTourneys_ForP}" Background="Black">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource Borduh}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <StackPanel>
+                                <TextBlock Text="{Binding tourney.tName}" Style="{StaticResource h2}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Gra w turnieju: " Style="{StaticResource h3}"/>
+                                    <TextBlock Text="{Binding pitIsPlaying}" Style="{StaticResource h3}"/>
+                                    <TextBlock Text=", Jest Organizatorem: " Style="{StaticResource h3}"/>
+                                    <TextBlock Text="{Binding pitIsTO}" Style="{StaticResource h3}"/>
+                                    <TextBlock Text=", Seed: " Style="{StaticResource h3}"/>
+                                    <TextBlock Text="{Binding pitSeeding}" Style="{StaticResource h3}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Center" 
+                    Margin="30 0 30 0">
+            <CheckBox IsChecked="{Binding CurPitIsPlaying}" Foreground="White" Margin="0 0 30 0">Gra w Turnieju</CheckBox>
+            <CheckBox IsChecked="{Binding CurPitIsTO}" Foreground="White" Margin="0 0 30 0">Jest Organizatorem</CheckBox>
+            <TextBox Text="{Binding CurPitSeeding}"></TextBox>
+            <TextBlock Foreground="White" Text="Seed" Margin="5 0 30 0"></TextBlock>
+            <Button Content="Add Connection" Command="{Binding PitCreateCommand}" Margin="0 0 30 0"></Button>
+            <Button Content="Update" Command="{Binding PitUpdateCommand}" Margin="0 0 30 0"></Button>
+            <Button Content="Delete" Command="{Binding PitDeleteCommand}" Margin="0 0 30 0"></Button>
+        </StackPanel>
+    </Grid>
+</Window>
